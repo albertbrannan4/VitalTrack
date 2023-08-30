@@ -1,7 +1,7 @@
 const db = require("../../data/db-config");
 const User = require("../auth/auth-model");
 
-const credentialsRequired = async (req, res, next) => {
+const registerCredentialsRequired = async (req, res, next) => {
   const { username, password, email } = req.body;
   let message = "";
 
@@ -40,8 +40,25 @@ const emailAlreadyRegistered = async (req, res, next) => {
   }
 };
 
+const loginCredentialsRequired = async (req, res, next) => {
+  const { email, password } = req.body;
+  let message = "";
+  if (!email) {
+    message = "email is required";
+  } else if (!password) {
+    message = "password is required";
+  }
+
+  if (message) {
+    res.status(401).json(message);
+  } else {
+    next();
+  }
+};
+
 module.exports = {
-  credentialsRequired,
+  registerCredentialsRequired,
   usernameAvailable,
   emailAlreadyRegistered,
+  loginCredentialsRequired,
 };

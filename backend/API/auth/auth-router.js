@@ -1,14 +1,15 @@
 const router = require("express").Router();
 const User = require("./auth-model");
 const {
-  credentialsRequired,
+  registerCredentialsRequired,
   usernameAvailable,
   emailAlreadyRegistered,
+  loginCredentialsRequired,
 } = require("../middleware/auth-middleware");
 
 router.post(
   "/register",
-  credentialsRequired,
+  registerCredentialsRequired,
   emailAlreadyRegistered,
   usernameAvailable,
   async (req, res) => {
@@ -22,5 +23,13 @@ router.post(
     }
   }
 );
+
+router.post("/login", loginCredentialsRequired, async (req, res) => {
+  try {
+    res.json({ message: "success" });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong logging in." });
+  }
+});
 
 module.exports = router;
