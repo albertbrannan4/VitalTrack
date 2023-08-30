@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-
+import FormLayout from "../Utils/FormLayout";
 interface NewUser {
   Email: string;
   Username: string;
@@ -46,39 +46,41 @@ const CreateAccount = ({ HandleSubmissions }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(OnSubmit)}>
-      <h3>Create Account</h3>
-      <TextField
-        {...register("Email", { required: "This is required" })}
-        id="standard-basic"
-        label="Email *"
-        variant="standard"
-        type="email"
-      />
-      <p style={InputError}>{errors.Email?.message}</p>
-      <TextField
-        {...register("Username", { required: "This is required" })}
-        id="standard-basic"
-        label="Username *"
-        variant="standard"
-        type="text"
-      />
-      <p style={InputError}>{errors.Username?.message}</p>
-      <TextField
-        {...register("Password", {
-          required: "This is required",
-          minLength: { value: 5, message: "Min Length is 5" },
-        })}
-        id="standard-basic"
-        label="Password *"
-        variant="standard"
-        type="password"
-      />
-      <p style={InputError}>{errors.Password?.message}</p>
-      <Button type="submit" style={{ marginTop: "1rem" }} variant="outlined">
-        Submit
-      </Button>
-    </form>
+    <FormLayout>
+      <form onSubmit={handleSubmit(OnSubmit)}>
+        <h3>Create Account</h3>
+        <TextField
+          {...register("Email", { required: "This is required" })}
+          id="standard-basic"
+          label="Email *"
+          variant="standard"
+          type="email"
+        />
+        <p style={InputError}>{errors.Email?.message}</p>
+        <TextField
+          {...register("Username", { required: "This is required" })}
+          id="standard-basic"
+          label="Username *"
+          variant="standard"
+          type="text"
+        />
+        <p style={InputError}>{errors.Username?.message}</p>
+        <TextField
+          {...register("Password", {
+            required: "This is required",
+            minLength: { value: 5, message: "Min Length is 5" },
+          })}
+          id="standard-basic"
+          label="Password *"
+          variant="standard"
+          type="password"
+        />
+        <p style={InputError}>{errors.Password?.message}</p>
+        <Button type="submit" style={{ marginTop: "1rem" }} variant="outlined">
+          Submit
+        </Button>
+      </form>
+    </FormLayout>
   );
 };
 

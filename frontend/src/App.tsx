@@ -1,14 +1,8 @@
 import React from "react";
 import "./App.css";
-import Login from "./Forms/Login";
-import CreateAccount from "./Forms/CreateAccount";
-import HandleSubmissions from "./Utils/HandleSubmissions";
+
 function App() {
-  return (
-    <div className="App">
-      <Login HandleSubmissions={HandleSubmissions} />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
