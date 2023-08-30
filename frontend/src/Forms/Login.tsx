@@ -4,13 +4,11 @@ import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 
 interface NewUser {
-  Email: string;
   Username: string;
   Password: string;
 }
 
 const InitialState: NewUser = {
-  Email: "",
   Username: "",
   Password: "",
 };
@@ -23,7 +21,7 @@ interface Props {
   HandleSubmissions: (action: any, url: string, data: any) => any;
 }
 
-const CreateAccount = ({ HandleSubmissions }: Props) => {
+const Login = ({ HandleSubmissions }: Props) => {
   const {
     register,
     handleSubmit,
@@ -33,29 +31,16 @@ const CreateAccount = ({ HandleSubmissions }: Props) => {
 
   const OnSubmit = (data: any) => {
     const format = {
-      email: data.Email,
       username: data.Username,
       password: data.Password,
     };
-    HandleSubmissions(
-      "post",
-      "http://localhost:9000/api/auth/register",
-      format
-    );
+    HandleSubmissions("post", "http://localhost:9000/api/auth/login", format);
     reset(InitialState);
   };
 
   return (
     <form onSubmit={handleSubmit(OnSubmit)}>
-      <h3>Create Account</h3>
-      <TextField
-        {...register("Email", { required: "This is required" })}
-        id="standard-basic"
-        label="Email *"
-        variant="standard"
-        type="email"
-      />
-      <p style={InputError}>{errors.Email?.message}</p>
+      <h3>Login</h3>
       <TextField
         {...register("Username", { required: "This is required" })}
         id="standard-basic"
@@ -82,4 +67,4 @@ const CreateAccount = ({ HandleSubmissions }: Props) => {
   );
 };
 
-export default CreateAccount;
+export default Login;

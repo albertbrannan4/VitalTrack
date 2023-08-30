@@ -1,12 +1,12 @@
 import React from "react";
+import "./App.css";
+import Login from "./Forms/Login";
 import CreateAccount from "./Forms/CreateAccount";
 import HandleSubmissions from "./Utils/HandleSubmissions";
-import "./App.css";
-
 function App() {
   return (
     <div className="App">
-      <CreateAccount HandleSubmissions={HandleSubmissions} />
+      <Login HandleSubmissions={HandleSubmissions} />
     </div>
   );
 }
