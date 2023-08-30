@@ -41,10 +41,10 @@ const emailAlreadyRegistered = async (req, res, next) => {
 };
 
 const loginCredentialsRequired = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   let message = "";
-  if (!email) {
-    message = "email is required";
+  if (!username) {
+    message = "username is required";
   } else if (!password) {
     message = "password is required";
   }
