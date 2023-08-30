@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import NavBar from "./Components/Navbar";
 import App from "./App";
 import CreateAccount from "./Forms/CreateAccount";
 import Login from "./Forms/Login";
@@ -25,6 +25,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
+    <NavBar />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
