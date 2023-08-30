@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HandleSubmissions from "./Utils/HandleSubmissions";
+
+import App from "./App";
 import CreateAccount from "./Forms/CreateAccount";
 import Login from "./Forms/Login";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,11 +15,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login HandleSubmissions={HandleSubmissions} />,
+    element: <Login />,
   },
   {
     path: "/create-account",
-    element: <CreateAccount HandleSubmissions={HandleSubmissions} />,
+    element: <CreateAccount />,
   },
 ]);
 

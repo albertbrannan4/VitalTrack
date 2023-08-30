@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "../Utils/FormLayout";
+import HandleSubmissions from "../Utils/HandleSubmissions";
 interface NewUser {
   Email: string;
   Username: string;
@@ -19,11 +20,7 @@ const InputError = {
   color: "red",
 };
 
-interface Props {
-  HandleSubmissions: (action: any, url: string, data: any) => any;
-}
-
-const CreateAccount = ({ HandleSubmissions }: Props) => {
+const CreateAccount = () => {
   const {
     register,
     handleSubmit,
