@@ -48,7 +48,7 @@ const CreateAccount = ({ HandleSubmissions }: Props) => {
   return (
     <FormLayout>
       <form onSubmit={handleSubmit(OnSubmit)}>
-        <h3>Create Account</h3>
+        <h3 style={{ textAlign: "center" }}>Create Account</h3>
         <TextField
           {...register("Email", { required: "This is required" })}
           id="standard-basic"

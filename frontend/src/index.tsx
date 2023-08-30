@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HandleSubmissions from "./Utils/HandleSubmissions";
+import CreateAccount from "./Forms/CreateAccount";
+import Login from "./Forms/Login";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Login HandleSubmissions={HandleSubmissions} />,
+  },
+  {
+    path: "/create-account",
+    element: <CreateAccount HandleSubmissions={HandleSubmissions} />,
+  },
+]);
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

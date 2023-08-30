@@ -41,7 +41,7 @@ const Login = ({ HandleSubmissions }: Props) => {
   return (
     <FormLayout>
       <form onSubmit={handleSubmit(OnSubmit)}>
-        <h3>Login</h3>
+        <h3 style={{ textAlign: "center" }}>Login</h3>
         <TextField
           {...register("Username", { required: "This is required" })}
           id="standard-basic"
