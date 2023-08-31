@@ -18,8 +18,14 @@ async function addUser(user) {
     });
 }
 
+async function getIdByUsername(username) {
+  let [result] = await db("users").where("username", username);
+  return result.user_id;
+}
+
 module.exports = {
   addUser,
   getAll,
   getByUserName,
+  getIdByUsername,
 };
