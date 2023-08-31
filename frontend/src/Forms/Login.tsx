@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "../Utils/FormLayout";
-import HandleSubmissions from "../Utils/HandleSubmissions";
+import axios from "axios";
 interface NewUser {
   Username: string;
   Password: string;
@@ -26,12 +26,21 @@ const Login = () => {
     reset,
   } = useForm<NewUser>();
 
-  const OnSubmit = (data: any) => {
+  const OnSubmit = async (data: any) => {
     const format = {
       username: data.Username,
       password: data.Password,
     };
-    HandleSubmissions("post", "http://localhost:9000/api/auth/login", format);
+    try {
+      let res = await axios.post(
+        "http://localhost:9000/api/auth/login",
+        format
+      );
+      localStorage.setItem("token", res.data.token);
+    } catch (err) {
+      console.log(err);
+    }
+
     reset(InitialState);
   };
 
