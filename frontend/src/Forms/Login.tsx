@@ -1,8 +1,9 @@
-import * as React from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "../Utils/FormLayout";
+
 import axios from "axios";
 interface NewUser {
   Username: string;
@@ -46,7 +47,10 @@ const Login = () => {
 
   return (
     <FormLayout>
-      <form onSubmit={handleSubmit(OnSubmit)}>
+      <form
+        style={{ display: "flex", flexDirection: "column" }}
+        onSubmit={handleSubmit(OnSubmit)}
+      >
         <h3 style={{ textAlign: "center" }}>Login</h3>
         <TextField
           {...register("Username", { required: "This is required" })}
@@ -71,6 +75,21 @@ const Login = () => {
           Submit
         </Button>
       </form>
+
+      <a
+        style={{
+          width: "100%",
+          textDecoration: "none",
+          color: "blue",
+          display: "inline-block",
+          textAlign: "center",
+          marginTop: "10%",
+          fontSize: "12px",
+        }}
+        href="/create-account"
+      >
+        Create Account
+      </a>
     </FormLayout>
   );
 };

@@ -44,7 +44,10 @@ const CreateAccount = () => {
 
   return (
     <FormLayout>
-      <form onSubmit={handleSubmit(OnSubmit)}>
+      <form
+        style={{ display: "flex", flexDirection: "column" }}
+        onSubmit={handleSubmit(OnSubmit)}
+      >
         <h3 style={{ textAlign: "center" }}>Create Account</h3>
         <TextField
           {...register("Email", { required: "This is required" })}
@@ -77,6 +80,20 @@ const CreateAccount = () => {
           Submit
         </Button>
       </form>
+      <a
+        style={{
+          width: "100%",
+          textDecoration: "none",
+          color: "blue",
+          display: "inline-block",
+          textAlign: "center",
+          marginTop: "10%",
+          fontSize: "12px",
+        }}
+        href="/login"
+      >
+        Login
+      </a>
     </FormLayout>
   );
 };

@@ -4,16 +4,23 @@ const NavBar = () => {
       <nav
         style={{
           display: "flex",
-          width: "25%",
+          width: "15%",
           justifyContent: "space-around",
         }}
       >
-        <a style={aTagStyle} href="/login">
-          Login
-        </a>
-        <a style={aTagStyle} href="/create-account">
-          Sign Up
-        </a>
+        {!localStorage.getItem("token") ? (
+          <a style={aTagStyle} href="/login">
+            Login
+          </a>
+        ) : (
+          <a
+            style={aTagStyle}
+            onClick={() => localStorage.clear()}
+            href="/login"
+          >
+            Logout
+          </a>
+        )}
       </nav>
     </div>
   );
