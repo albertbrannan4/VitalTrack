@@ -1,5 +1,7 @@
 const db = require("../../data/db-config");
 const User = require("../auth/auth-model");
+const { JWT_SECRET } = require("../../secrets");
+const jwt = require("jsonwebtoken");
 
 const registerCredentialsRequired = async (req, res, next) => {
   const { username, password, email } = req.body;
@@ -27,6 +29,22 @@ const usernameAvailable = async (req, res, next) => {
     res.status(401).json({ message: `username: ${username} is taken.` });
   } else {
     next();
+  }
+};
+
+const restricted = async (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    res.json({ status: 401, message: "Token required" });
+  } else {
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+      if (err) {
+        res.json({ status: 401, message: "Token invalid" });
+      } else {
+        req.decodedjwt = decoded;
+        next();
+      }
+    });
   }
 };
 
@@ -61,4 +79,5 @@ module.exports = {
   usernameAvailable,
   emailAlreadyRegistered,
   loginCredentialsRequired,
+  restricted,
 };
