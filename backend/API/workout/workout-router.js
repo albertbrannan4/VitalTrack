@@ -32,4 +32,8 @@ router.get("/:id", restricted, async (req, res) => {
   }
 });
 
+router.put("/", restricted, async (req, res) => {
+  res.json("working on adding");
+});
+
 module.exports = router;

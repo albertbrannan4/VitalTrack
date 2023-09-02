@@ -13,4 +13,8 @@ async function getWorkoutById(user_id, workout_id) {
   return result;
 }
 
+async function addWorkout(workout) {
+  let result = await db("workout").insert(workout);
+}
+
 module.exports = { getAllWorkouts, getWorkoutById };

@@ -7,7 +7,7 @@ import NavBar from "./Components/Navbar";
 import App from "./App";
 import CreateAccount from "./Forms/CreateAccount";
 import Login from "./Forms/Login";
-
+import AddWorkout from "./Forms/AddWorkout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     path: "/create-account",
     element: <CreateAccount />,
   },
+  { path: "/add-workout", element: <AddWorkout /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
