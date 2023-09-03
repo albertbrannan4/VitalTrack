@@ -1,33 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NavBar from "./Components/Navbar";
 import App from "./App";
-import CreateAccount from "./Forms/CreateAccount";
-import Login from "./Forms/Login";
-import AddWorkout from "./Forms/AddWorkout";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/create-account",
-    element: <CreateAccount />,
-  },
-  { path: "/add-workout", element: <AddWorkout /> },
-]);
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+import reportWebVitals from "./reportWebVitals";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
   <React.StrictMode>
-    <NavBar />
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
 
