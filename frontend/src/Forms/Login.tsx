@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "../Utils/FormLayout";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 interface NewUser {
@@ -26,6 +27,7 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm<NewUser>();
+  const navigate = useNavigate();
 
   const OnSubmit = async (data: any) => {
     const format = {
@@ -38,11 +40,12 @@ const Login = () => {
         format
       );
       localStorage.setItem("token", res.data.token);
+      reset(InitialState);
+      navigate("/add-workout");
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
-
-    reset(InitialState);
   };
 
   return (

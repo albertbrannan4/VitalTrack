@@ -14,13 +14,7 @@ interface WorkoutInterface {
   Notes: string;
 }
 
-// const InitialState: WorkoutInterface = {
-//   WorkoutType: "",
-//   Duration: 0,
-//   Notes: "",
-// };
-
-function ConvertStringToSeconds(time: string) {
+function ConvertStringToSeconds(time: string): number {
   const [hours, minutes, seconds] = time.split(":");
   let totalSeconds =
     parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
@@ -47,20 +41,18 @@ const AddWorkout = () => {
 
     const config = {
       headers: {
-        Authorization: `${localStorage.getItem("token")}`, // Add the token to the "Authorization" header
-        "Content-Type": "application/json", // Set the content type as needed
+        Authorization: `${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
       },
     };
-    console.log(config);
+
     axios
       .post("http://localhost:9000/api/workout/", cleanRunData, config)
       .then((response) => {
-        // Handle the response
         setMessage(response.data.message);
         console.log(response.data.message);
       })
       .catch((error) => {
-        // Handle errors
         console.error(error);
       });
   };
@@ -120,7 +112,9 @@ const AddWorkout = () => {
             Add Workout
           </Button>
         ) : (
-          <p>{message}</p>
+          <p style={{ color: "green", fontWeight: 700 }}>
+            {message.toLocaleUpperCase()}
+          </p>
         )}
       </form>
     </FormLayout>

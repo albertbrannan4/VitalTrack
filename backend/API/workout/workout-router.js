@@ -36,7 +36,7 @@ router.post("/", restricted, async (req, res) => {
   const { miles, duration, notes } = req.body;
   try {
     const token = req.headers["authorization"];
-    console.log(token);
+
     const userData = jwt.decode(token, JWT_SECRET);
 
     const user_id = await User.getIdByUsername(userData.username);
