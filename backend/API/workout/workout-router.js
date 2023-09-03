@@ -11,6 +11,7 @@ router.get("/", restricted, async (req, res) => {
     const userData = jwt.decode(token, JWT_SECRET);
     const { username } = userData;
     const user_id = await User.getIdByUsername(username);
+    console.log(user_id);
     let allWorkouts = await Workout.getAllWorkouts(user_id);
     res.json(allWorkouts);
   } catch (err) {

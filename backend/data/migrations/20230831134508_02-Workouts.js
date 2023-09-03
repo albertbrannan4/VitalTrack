@@ -4,28 +4,17 @@
  */
 
 exports.up = function (knex) {
-  return knex.schema
-    .createTable("workout", (table) => {
-      table.increments("workout_id");
-      table
-        .integer("user_id")
-        .notNullable()
-        .references("user_id")
-        .inTable("users");
-      table
-        .integer("workout_type_id")
-        .notNullable()
-        .references("workout_type_id")
-        .inTable("workout_type");
-      table.string("duration");
-      table.string("notes");
-    })
-
-    .createTable("workout_type", (type) => {
-      type.increments("workout_id");
-      type.string("workout_name");
-      type.string("workout_type_description");
-    });
+  return knex.schema.createTable("runs", (table) => {
+    table.increments("run_id");
+    table
+      .integer("user_id")
+      .notNullable()
+      .references("user_id")
+      .inTable("users");
+    table.float("miles").notNullable;
+    table.integer("duration").notNullable;
+    table.string("notes");
+  });
 };
 
 /**
@@ -33,7 +22,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema
-    .dropTableIfExists("workout_type")
-    .dropTableIfExists("Workout");
+  return knex.schema.dropTableIfExists("runs");
 };
