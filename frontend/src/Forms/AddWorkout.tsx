@@ -1,19 +1,16 @@
 import FormLayout from "../Utils/FormLayout";
-import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import React, { useState } from "react";
+
 import Button from "@mui/material/Button";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { TextField } from "@mui/material";
 
 import axios from "axios";
 
 interface WorkoutInterface {
-  WorkoutType: string;
   Duration: number;
+  Distance: number;
   Notes: string;
 }
 
@@ -23,17 +20,49 @@ interface WorkoutInterface {
 //   Notes: "",
 // };
 
+function ConvertStringToSeconds(time: string) {
+  const [hours, minutes, seconds] = time.split(":");
+  let totalSeconds =
+    parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+  return totalSeconds;
+}
+
 const AddWorkout = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
     reset,
   } = useForm<WorkoutInterface>();
+  const [message, setMessage] = useState<string>("");
 
-  const submit = (data: any) => {
-    console.log(data);
+  const submit = async (data: any) => {
+    const { Duration, Distance, Notes } = data;
+    let convertedTime = ConvertStringToSeconds(Duration);
+    let cleanRunData = {
+      duration: convertedTime,
+      miles: parseInt(Distance),
+      notes: Notes,
+    };
+
+    const config = {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`, // Add the token to the "Authorization" header
+        "Content-Type": "application/json", // Set the content type as needed
+      },
+    };
+    console.log(config);
+    axios
+      .post("http://localhost:9000/api/workout/", cleanRunData, config)
+      .then((response) => {
+        // Handle the response
+        setMessage(response.data.message);
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error(error);
+      });
   };
 
   const InputError = {
@@ -51,44 +80,30 @@ const AddWorkout = () => {
         onSubmit={handleSubmit(submit)}
       >
         <h2>Add Workout</h2>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 220 }}>
-          <InputLabel id="demo-simple-select-standard-label">
-            Type Of Workout
-          </InputLabel>
-          <Controller
-            name="WorkoutType"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                label="Type Of Workout"
-                {...field}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={"run"}>run</MenuItem>
-                <MenuItem value={"lift"}>lift</MenuItem>
-                <MenuItem value={"yoga"}>yoga</MenuItem>
-              </Select>
-            )}
-          />
-        </FormControl>
+
         <TextField
           {...register("Duration", {
-            valueAsNumber: true,
-            min: 1,
-            required: "This is required",
+            required: "Duration is required",
           })}
           id="standard-basic"
-          label="Duration (minutes)*"
+          label="Duration *"
+          placeholder="00:00:00"
           variant="standard"
-          type="numbers"
+          type="text"
           style={{ width: 220 }}
         />
-        {/* <p style={InputError}>{errors.Duration?.message}</p> */}
+        <p style={InputError}>{errors.Duration?.message}</p>
+        <TextField
+          {...register("Distance", {
+            required: "Distance is required",
+          })}
+          id="standard-basic"
+          label="Distance *"
+          variant="standard"
+          type="text"
+          style={{ width: 220 }}
+        />
+        <p style={InputError}>{errors.Distance?.message}</p>
         <TextField
           {...register("Notes")}
           multiline
@@ -100,9 +115,13 @@ const AddWorkout = () => {
           style={{ width: 220, marginBottom: "10%" }}
         />
 
-        <Button variant="contained" type="submit">
-          Add Workout
-        </Button>
+        {message === "" ? (
+          <Button variant="contained" type="submit">
+            Add Workout
+          </Button>
+        ) : (
+          <p>{message}</p>
+        )}
       </form>
     </FormLayout>
   );
