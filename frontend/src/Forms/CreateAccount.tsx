@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-import FormLayout from "../Utils/FormLayout";
+import FormLayout from "./FormLayout";
 import HandleSubmissions from "../Utils/HandleSubmissions";
 import { Link } from "react-router-dom";
 interface NewUser {
@@ -81,18 +81,7 @@ const CreateAccount = () => {
           Submit
         </Button>
       </form>
-      <Link
-        style={{
-          width: "100%",
-          textDecoration: "none",
-          color: "blue",
-          display: "inline-block",
-          textAlign: "center",
-          marginTop: "10%",
-          fontSize: "12px",
-        }}
-        to="/login"
-      >
+      <Link className="switch-form-link" to="/login">
         Login
       </Link>
     </FormLayout>

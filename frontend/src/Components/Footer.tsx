@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer>
       <a href="https://www.brandev22.com/" target="_black">
-        BRANDEV22
+        BRANDEV22 LLC
       </a>
     </footer>
   );

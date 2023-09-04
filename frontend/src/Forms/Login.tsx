@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-import FormLayout from "../Utils/FormLayout";
+import FormLayout from "./FormLayout";
 import { useNavigate, Link } from "react-router-dom";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 interface NewUser {
   Username: string;
   Password: string;
@@ -28,7 +28,7 @@ const Login = () => {
     reset,
   } = useForm<NewUser>();
   const navigate = useNavigate();
-
+  const [message, setMessage] = useState<string>();
   const OnSubmit = async (data: any) => {
     const format = {
       username: data.Username,
@@ -44,14 +44,17 @@ const Login = () => {
       navigate("/add-workout");
       window.location.reload();
     } catch (err) {
-      console.log(err);
+      if (axios.isAxiosError(err)) {
+        const { message } = err.response?.data;
+        setMessage(message);
+      }
     }
   };
 
   return (
     <FormLayout>
       <form
-        style={{ display: "flex", flexDirection: "column" }}
+        // style={{ display: "flex", flexDirection: "column" }}
         onSubmit={handleSubmit(OnSubmit)}
       >
         <h3 style={{ textAlign: "center" }}>Login</h3>
@@ -79,20 +82,12 @@ const Login = () => {
         </Button>
       </form>
 
-      <Link
-        style={{
-          width: "100%",
-          textDecoration: "none",
-          color: "blue",
-          display: "inline-block",
-          textAlign: "center",
-          marginTop: "10%",
-          fontSize: "12px",
-        }}
-        to="/create-account"
-      >
+      <Link className="switch-form-link" to="/create-account">
         Create Account
       </Link>
+      <h3 style={{ textAlign: "center", color: "red", marginTop: "10%" }}>
+        {message}
+      </h3>
     </FormLayout>
   );
 };

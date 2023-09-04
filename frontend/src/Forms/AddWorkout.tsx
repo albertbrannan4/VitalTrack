@@ -1,4 +1,3 @@
-import FormLayout from "../Utils/FormLayout";
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
@@ -62,62 +61,60 @@ const AddWorkout = () => {
   };
 
   return (
-    <FormLayout>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-        onSubmit={handleSubmit(submit)}
-      >
-        <h2>Add Workout</h2>
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+      onSubmit={handleSubmit(submit)}
+    >
+      <h2>Add Workout</h2>
 
-        <TextField
-          {...register("Duration", {
-            required: "Duration is required",
-          })}
-          id="standard-basic"
-          label="Duration *"
-          placeholder="00:00:00"
-          variant="standard"
-          type="text"
-          style={{ width: 220 }}
-        />
-        <p style={InputError}>{errors.Duration?.message}</p>
-        <TextField
-          {...register("Distance", {
-            required: "Distance is required",
-          })}
-          id="standard-basic"
-          label="Distance *"
-          variant="standard"
-          type="text"
-          style={{ width: 220 }}
-        />
-        <p style={InputError}>{errors.Distance?.message}</p>
-        <TextField
-          {...register("Notes")}
-          multiline
-          rows={4}
-          id="standard-basic"
-          label="Notes"
-          variant="standard"
-          type="text"
-          style={{ width: 220, marginBottom: "10%" }}
-        />
+      <TextField
+        {...register("Duration", {
+          required: "Duration is required",
+        })}
+        id="standard-basic"
+        label="Duration *"
+        placeholder="00:00:00"
+        variant="standard"
+        type="text"
+        style={{ width: 220 }}
+      />
+      <p style={InputError}>{errors.Duration?.message}</p>
+      <TextField
+        {...register("Distance", {
+          required: "Distance is required",
+        })}
+        id="standard-basic"
+        label="Distance *"
+        variant="standard"
+        type="text"
+        style={{ width: 220 }}
+      />
+      <p style={InputError}>{errors.Distance?.message}</p>
+      <TextField
+        {...register("Notes")}
+        multiline
+        rows={4}
+        id="standard-basic"
+        label="Notes"
+        variant="standard"
+        type="text"
+        style={{ width: 220, marginBottom: "10%" }}
+      />
 
-        {message === "" ? (
-          <Button variant="contained" type="submit">
-            Add Workout
-          </Button>
-        ) : (
-          <p style={{ color: "green", fontWeight: 700 }}>
-            {message.toLocaleUpperCase()}
-          </p>
-        )}
-      </form>
-    </FormLayout>
+      {message === "" ? (
+        <Button variant="contained" type="submit">
+          Add Workout
+        </Button>
+      ) : (
+        <p style={{ color: "green", fontWeight: 700 }}>
+          {message.toLocaleUpperCase()}
+        </p>
+      )}
+    </form>
   );
 };
 

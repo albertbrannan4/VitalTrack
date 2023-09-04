@@ -22,6 +22,40 @@ nav {
 .navLink:hover {
   text-decoration: line-through;
 }
+/*-------------------------Form Layout-------------------------------*/
+
+.form-layout {
+  display: flex;
+  height: 80vh;
+}
+.form-layout main {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-layout img {
+  width: 50%;
+  object-fit: cover;
+}
+
+/*-------------------------login Form-------------------------------*/
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-form-link {
+  text-align: center;
+  text-decoration: none;
+  color: blue;
+  font-size: 15px;
+  margin-top: 15px;
+}
 
 /*-------------------------Footer-------------------------------*/
 
