@@ -14,7 +14,7 @@ $color_apricot: #f9d4bb;
 }
 
 nav {
-  width: 24%;
+  width: 10%;
   display: flex;
   justify-content: space-around;
   margin-top: 2%;
@@ -28,6 +28,25 @@ nav {
 .navLink:hover {
   text-decoration: line-through;
 }
+/*-------------------------Home Page-------------------------------*/
+
+.home-page {
+  height: 80vh;
+  background-image: url("https://images.unsplash.com/uploads/1412533519888a485b488/bb9f9777?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page h1 {
+  text-align: center;
+  font-size: 6rem;
+  color: whitesmoke;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+}
+
 /*-------------------------Form Layout-------------------------------*/
 
 .form-layout {

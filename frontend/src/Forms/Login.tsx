@@ -41,7 +41,7 @@ const Login = () => {
       );
       localStorage.setItem("token", res.data.token);
       reset(InitialState);
-      navigate("/add-workout");
+      navigate("/dashboard");
       window.location.reload();
     } catch (err) {
       if (axios.isAxiosError(err)) {

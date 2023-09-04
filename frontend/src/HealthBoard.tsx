@@ -8,7 +8,7 @@ const HealthBoard = () => {
   const toggleModal = () => {
     setModal(!modal);
   };
-  console.log(modal);
+
   return (
     <div className="dashboard">
       <button onClick={toggleModal} className="add-workout-button">
