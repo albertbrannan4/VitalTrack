@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../App.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
-
-const NavBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  let LoggedOut = localStorage.getItem("token") === null;
-  // console.log(localStorage.getItem("token") === null);
+import { setAuthentication } from "../Store";
+const NavBar = (props: any) => {
+  const { isAuthenticated } = props;
+  const Logout = () => {
+    localStorage.clear();
+    props.setAuthentication(!isAuthenticated);
+  };
+  console.log(isAuthenticated);
   return (
     <div className="header">
       <nav>
-        {LoggedOut ? (
+        {!isAuthenticated ? (
           <Link className="navLink" to="/login">
             Login
           </Link>
         ) : (
-          <Link className="navLink" onClick={() => localStorage.clear()} to="/">
+          <Link className="navLink" onClick={Logout} to="/">
             <LogoutIcon />
           </Link>
         )}
@@ -23,5 +27,8 @@ const NavBar = () => {
     </div>
   );
 };
+const mapStateToProps = (state: any) => {
+  return { isAuthenticated: state.isAuthenticated };
+};
 
-export default NavBar;
+export default connect(mapStateToProps, { setAuthentication })(NavBar);

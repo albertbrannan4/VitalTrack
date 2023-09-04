@@ -4,8 +4,9 @@ import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "./FormLayout";
 import { useNavigate, Link } from "react-router-dom";
-
+import { connect } from "react-redux";
 import axios, { AxiosError } from "axios";
+import { setAuthentication } from "../Store";
 interface NewUser {
   Username: string;
   Password: string;
@@ -20,7 +21,7 @@ const InputError = {
   color: "red",
 };
 
-const Login = () => {
+const Login = (props: any) => {
   const {
     register,
     handleSubmit,
@@ -42,7 +43,8 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       reset(InitialState);
       navigate("/dashboard");
-      window.location.reload();
+      // window.location.reload();
+      props.setAuthentication(!props.isAuthenticated);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const { message } = err.response?.data;
@@ -50,7 +52,7 @@ const Login = () => {
       }
     }
   };
-
+  console.log("Login props", props);
   return (
     <FormLayout>
       <form
@@ -92,4 +94,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state: any) => {
+  return { isAuthenticated: state.isAuthenticated };
+};
+
+export default connect(mapStateToProps, { setAuthentication })(Login);
