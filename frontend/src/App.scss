@@ -1,0 +1,145 @@
+$color-charcoal: #2a3d45;
+$color-cade_gray: #76949f;
+$color-tiffany-blue: #86bbbd;
+$color-sandy-brown: #f0a868;
+$color_apricot: #f9d4bb;
+
+/*--------------------------Header------------------------------*/
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1%;
+  background-color: $color-charcoal;
+}
+
+nav {
+  width: 24%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.navLink {
+  text-decoration: none;
+  color: whitesmoke;
+}
+.navLink:hover {
+  text-decoration: line-through;
+}
+/*-------------------------Form Layout-------------------------------*/
+
+.form-layout {
+  display: flex;
+  height: 80vh;
+}
+.form-layout main {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-layout img {
+  width: 50%;
+  object-fit: cover;
+}
+/*-------------------------Health Board-------------------------------*/
+.dashboard {
+  height: 80vh;
+  background-color: $color_tiffany-blue;
+}
+
+.dashboard h2 {
+  color: whitesmoke;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 5%;
+}
+
+/*-------------------------Add Workout-------------------------------*/
+
+.add-run-form {
+  border: 1px solid $color-charcoal;
+  border-radius: 12px;
+  width: 40%;
+  padding: 2%;
+  background-color: whitesmoke;
+  box-shadow: 10px 5px 5px $color-charcoal;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.clear-modal {
+  width: 97%;
+  display: flex;
+  justify-content: end;
+}
+
+.add-workout-button {
+  position: absolute;
+  left: 90%;
+  top: 20%;
+  border: 1px solid gray;
+  background-color: #5cb85c;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+/*-------------------------login Form-------------------------------*/
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-form-link {
+  text-align: center;
+  text-decoration: none;
+  color: blue;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+/*-------------------------Footer-------------------------------*/
+
+footer {
+  background-color: $color-charcoal;
+  padding: 3%;
+}
+footer a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+footer a:hover {
+  text-decoration: line-through;
+}

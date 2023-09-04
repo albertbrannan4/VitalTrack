@@ -1,14 +1,15 @@
 import React, { useState, ReactNode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 //Components
 import NavBar from "./Components/Navbar";
 import CreateAccount from "./Forms/CreateAccount";
 import Login from "./Forms/Login";
-import AddWorkout from "./Forms/AddWorkout";
+
 import Home from "./Home";
 import Footer from "./Components/Footer";
+import HealthBoard from "./HealthBoard";
 
 const RouteWithNavBar: React.FC<{ children: ReactNode }> = ({ children }) => (
   <div>
@@ -42,11 +43,12 @@ const router = createBrowserRouter([
       </RouteWithNavBar>
     ),
   },
+
   {
-    path: "/add-workout",
+    path: "/dashboard",
     element: (
       <RouteWithNavBar>
-        <AddWorkout />
+        <HealthBoard />
       </RouteWithNavBar>
     ),
   },

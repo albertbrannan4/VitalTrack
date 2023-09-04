@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import "../App.scss";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-
+import ClearIcon from "@mui/icons-material/Clear";
 import { TextField } from "@mui/material";
 
 import axios from "axios";
@@ -20,7 +20,11 @@ function ConvertStringToSeconds(time: string): number {
   return totalSeconds;
 }
 
-const AddWorkout = () => {
+interface Props {
+  setModal: any;
+}
+
+const AddWorkout = ({ setModal }: Props) => {
   const {
     register,
     handleSubmit,
@@ -61,15 +65,13 @@ const AddWorkout = () => {
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-      onSubmit={handleSubmit(submit)}
-    >
-      <h2>Add Workout</h2>
+    <form onSubmit={handleSubmit(submit)} className="add-run-form">
+      <div className="clear-modal" onClick={() => setModal(false)}>
+        <ClearIcon />
+      </div>
+      <h2 style={{ color: "black", fontSize: "1.4rem", marginBottom: "1%" }}>
+        Add Workout
+      </h2>
 
       <TextField
         {...register("Duration", {

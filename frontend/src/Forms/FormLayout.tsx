@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import "../App.css";
+import "../App.scss";
 interface LayoutProps {
   children: ReactNode;
 }
