@@ -78,7 +78,7 @@ const Login = () => {
         />
         <p style={InputError}>{errors.Password?.message}</p>
         <Button type="submit" style={{ marginTop: "1rem" }} variant="outlined">
-          Submit
+          LOGIN
         </Button>
       </form>
 

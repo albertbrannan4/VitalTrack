@@ -8,8 +8,8 @@ import { TextField } from "@mui/material";
 import axios from "axios";
 
 interface WorkoutInterface {
-  Duration: number;
-  Distance: number;
+  Duration: string;
+  Distance: string;
   Notes: string;
 }
 
@@ -53,7 +53,7 @@ const AddWorkout = ({ setModal }: Props) => {
       .post("http://localhost:9000/api/workout/", cleanRunData, config)
       .then((response) => {
         setMessage(response.data.message);
-        console.log(response.data.message);
+        reset({ Distance: "", Duration: "", Notes: "" });
       })
       .catch((error) => {
         console.error(error);

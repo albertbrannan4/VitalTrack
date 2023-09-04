@@ -2,13 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LoginIcon from "@mui/icons-material/Login";
-interface Option {
-  Text: string;
-  Path: string;
-}
-
-const NavLinks: Option[] = [{ Text: "Add Workout", Path: "/add-workout" }];
 
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -26,13 +19,6 @@ const NavBar = () => {
             <LogoutIcon />
           </Link>
         )}
-        {/* {NavLinks.map((each, idx) =>
-          LoggedOut ? (
-            <Link className="navLink" key={idx} to={each.Path}>
-              {each.Text}
-            </Link>
-          ) : null
-        )} */}
       </nav>
     </div>
   );
