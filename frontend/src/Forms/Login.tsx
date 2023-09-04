@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "../Utils/FormLayout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import axios from "axios";
 interface NewUser {
@@ -79,7 +79,7 @@ const Login = () => {
         </Button>
       </form>
 
-      <a
+      <Link
         style={{
           width: "100%",
           textDecoration: "none",
@@ -89,10 +89,10 @@ const Login = () => {
           marginTop: "10%",
           fontSize: "12px",
         }}
-        href="/create-account"
+        to="/create-account"
       >
         Create Account
-      </a>
+      </Link>
     </FormLayout>
   );
 };

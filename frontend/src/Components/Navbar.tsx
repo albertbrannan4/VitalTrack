@@ -1,30 +1,38 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../App.css";
+
+interface Option {
+  Text: string;
+  Path: string;
+}
+
+const NavLinks: Option[] = [{ Text: "Add Workout", Path: "/add-workout" }];
+
 const NavBar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end" }}>
-      <nav
-        style={{
-          display: "flex",
-          width: "15%",
-          justifyContent: "space-around",
-        }}
-      >
-        {!localStorage.getItem("token") ? (
-          <a style={aTagStyle} href="/login">
+    <div className="header">
+      <nav>
+        {!isLoggedIn ? (
+          <Link className="navLink" to="/login">
             Login
-          </a>
+          </Link>
         ) : (
-          <a
-            style={aTagStyle}
-            onClick={() => localStorage.clear()}
-            href="/login"
-          >
+          <Link className="navLink" onClick={() => localStorage.clear()} to="/">
             Logout
-          </a>
+          </Link>
+        )}
+        {NavLinks.map((each, idx) =>
+          isLoggedIn ? (
+            <Link className="navLink" key={idx} to={each.Path}>
+              {each.Text}
+            </Link>
+          ) : null
         )}
       </nav>
     </div>
   );
 };
-export default NavBar;
 
-const aTagStyle = { margin: "2%", textDecoration: "none" };
+export default NavBar;

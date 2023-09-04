@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import FormLayout from "../Utils/FormLayout";
 import HandleSubmissions from "../Utils/HandleSubmissions";
+import { Link } from "react-router-dom";
 interface NewUser {
   Email: string;
   Username: string;
@@ -80,7 +81,7 @@ const CreateAccount = () => {
           Submit
         </Button>
       </form>
-      <a
+      <Link
         style={{
           width: "100%",
           textDecoration: "none",
@@ -90,10 +91,10 @@ const CreateAccount = () => {
           marginTop: "10%",
           fontSize: "12px",
         }}
-        href="/login"
+        to="/login"
       >
         Login
-      </a>
+      </Link>
     </FormLayout>
   );
 };

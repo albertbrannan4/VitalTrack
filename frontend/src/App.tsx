@@ -1,28 +1,60 @@
-import React from "react";
+import React, { useState, ReactNode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+
+//Components
 import NavBar from "./Components/Navbar";
 import CreateAccount from "./Forms/CreateAccount";
 import Login from "./Forms/Login";
 import AddWorkout from "./Forms/AddWorkout";
-import "./App.css";
+import Home from "./Home";
+import Footer from "./Components/Footer";
 
+const RouteWithNavBar: React.FC<{ children: ReactNode }> = ({ children }) => (
+  <div>
+    <NavBar />
+    {children}
+    <Footer />
+  </div>
+);
 const router = createBrowserRouter([
-  { path: "/", element: <Login /> },
+  {
+    path: "/",
+    element: (
+      <RouteWithNavBar>
+        <Home />
+      </RouteWithNavBar>
+    ),
+  },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <RouteWithNavBar>
+        <Login />
+      </RouteWithNavBar>
+    ),
   },
   {
     path: "/create-account",
-    element: <CreateAccount />,
+    element: (
+      <RouteWithNavBar>
+        <CreateAccount />
+      </RouteWithNavBar>
+    ),
   },
-  { path: "/add-workout", element: <AddWorkout /> },
+  {
+    path: "/add-workout",
+    element: (
+      <RouteWithNavBar>
+        <AddWorkout />
+      </RouteWithNavBar>
+    ),
+  },
 ]);
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <RouterProvider router={router} />
     </div>
   );
