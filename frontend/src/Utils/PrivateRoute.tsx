@@ -21,8 +21,12 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   return <>{children}</>;
 };
 
-const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.isAuthenticated };
+interface MapState {
+  isAuthenticated: boolean;
+}
+
+const mapStateToProps = ({ isAuthenticated }: MapState) => {
+  return { isAuthenticated: isAuthenticated };
 };
 
 export default connect(mapStateToProps, {})(PrivateRoute);

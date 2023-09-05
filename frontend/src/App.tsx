@@ -1,6 +1,6 @@
-import React, { useState, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { connect } from "react-redux";
+
 import "./App.scss";
 
 //Components

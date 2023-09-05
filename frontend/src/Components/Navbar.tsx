@@ -6,25 +6,25 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { setAuthentication } from "../Store";
+import { setAuthentication, setUsername } from "../Store";
+
 const NavBar = (props: any) => {
-  const { isAuthenticated } = props;
+  const { isAuthenticated, username } = props;
   const Logout = () => {
     localStorage.clear();
     props.setAuthentication(!isAuthenticated);
+    props.setUsername("");
   };
 
   return (
     <div className="header">
+      <h4>{username.toUpperCase()}</h4>
       <nav>
-        <Link to="/">
-          <HomeIcon style={{ color: "white" }} />
+        <Link className="navLink" to="/">
+          <HomeIcon />
         </Link>
         {isAuthenticated && (
-          <Link
-            style={{ color: "white", textDecoration: "none" }}
-            to="/dashboard"
-          >
+          <Link className="navLink" to="/dashboard">
             <DashboardIcon />
           </Link>
         )}
@@ -42,7 +42,9 @@ const NavBar = (props: any) => {
   );
 };
 const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.isAuthenticated };
+  return { isAuthenticated: state.isAuthenticated, username: state.username };
 };
 
-export default connect(mapStateToProps, { setAuthentication })(NavBar);
+export default connect(mapStateToProps, { setAuthentication, setUsername })(
+  NavBar
+);

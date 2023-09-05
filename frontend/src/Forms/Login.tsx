@@ -6,7 +6,7 @@ import FormLayout from "./FormLayout";
 import { useNavigate, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios, { AxiosError } from "axios";
-import { setAuthentication } from "../Store";
+import { setAuthentication, setUsername } from "../Store";
 interface NewUser {
   Username: string;
   Password: string;
@@ -40,11 +40,15 @@ const Login = (props: any) => {
         "http://localhost:9000/api/auth/login",
         format
       );
-      localStorage.setItem("token", res.data.token);
+      const userToken: any = res.data.token;
+      const username: string = res.data.username;
+      console.log(userToken);
+      localStorage.setItem("token", userToken);
       reset(InitialState);
-      navigate("/dashboard");
-      // window.location.reload();
+
       props.setAuthentication(!props.isAuthenticated);
+      props.setUsername(username);
+      navigate("/dashboard");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const { message } = err.response?.data;
@@ -52,7 +56,7 @@ const Login = (props: any) => {
       }
     }
   };
-
+  console.log(props);
   return (
     <FormLayout>
       <form
@@ -95,7 +99,9 @@ const Login = (props: any) => {
 };
 
 const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.isAuthenticated };
+  return { isAuthenticated: state.isAuthenticated, username: state.username };
 };
 
-export default connect(mapStateToProps, { setAuthentication })(Login);
+export default connect(mapStateToProps, { setAuthentication, setUsername })(
+  Login
+);

@@ -3,8 +3,7 @@ import "./App.scss";
 import AddIcon from "@mui/icons-material/Add";
 import AddWorkout from "./Forms/AddWorkout";
 import axios from "axios";
-import { JsxElement } from "typescript";
-
+import { connect } from "react-redux";
 interface Workout {
   duration: number;
   miles: number;
@@ -23,9 +22,10 @@ const InitialState = [
   },
 ];
 
-const HealthBoard = () => {
+const HealthBoard = (props: any) => {
   const [modal, setModal] = useState<boolean>(false);
   const [workouts, setWorkout] = useState<Workout[]>(InitialState);
+
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -53,6 +53,18 @@ const HealthBoard = () => {
         <AddIcon />
       </button>
       <h2>Health Board</h2>
+      {props.username !== "" && (
+        <p
+          style={{
+            color: "white",
+            textAlign: "center",
+            paddingLeft: "5%",
+            marginTop: "1%",
+          }}
+        >
+          Hello <span style={{ fontFamily: "cursive" }}>{props.username}</span>!
+        </p>
+      )}
       <div className="workouts-section">
         {workouts.map((each: Workout) => (
           <div className="workout-row" key={each.run_id}>
@@ -69,4 +81,8 @@ const HealthBoard = () => {
     </div>
   );
 };
-export default HealthBoard;
+
+const mapStateToProps = (state: any) => {
+  return { username: state.username, isAuthenticated: state.isAuthenticated };
+};
+export default connect(mapStateToProps, {})(HealthBoard);

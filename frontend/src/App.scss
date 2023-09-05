@@ -8,8 +8,12 @@ $color_apricot: #f9d4bb;
 
 .header {
   display: flex;
-  justify-content: flex-end;
-  padding: 1%;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+  padding-left: 4%;
+  padding-right: 4%;
   background-color: $color-charcoal;
 }
 
@@ -19,6 +23,8 @@ nav {
   justify-content: space-around;
   margin-top: 2%;
   margin-bottom: 2%;
+  align-items: center;
+  color: white;
 }
 
 .navLink {
