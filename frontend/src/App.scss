@@ -66,8 +66,12 @@ nav {
 }
 /*-------------------------Health Board-------------------------------*/
 .dashboard {
-  height: 80vh;
+  height: 100vh;
   background-color: $color_tiffany-blue;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .dashboard h2 {
@@ -75,6 +79,28 @@ nav {
   font-size: 2rem;
   text-align: center;
   padding-top: 5%;
+}
+
+.workouts-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.workout-row {
+  width: 40%;
+  background-color: #28282b;
+  color: $color_apricot;
+  padding: 2%;
+}
+
+.workout-row:hover {
+  background-color: $color-charcoal;
+  color: $color-sandy-brown;
+  border: 0.5px solid white;
 }
 
 /*-------------------------Add Workout-------------------------------*/
