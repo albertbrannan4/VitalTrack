@@ -67,7 +67,7 @@ const AppRouter: React.FC<{ isAuthenticated: boolean }> = ({
 
 function App(props: { isAuthenticated: boolean }) {
   const { isAuthenticated } = props;
-  console.log(isAuthenticated);
+
   return (
     <div className="App">
       <AppRouter isAuthenticated={isAuthenticated} />

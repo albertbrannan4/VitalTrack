@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../App.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import HomeIcon from "@mui/icons-material/Home";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import { setAuthentication } from "../Store";
 const NavBar = (props: any) => {
   const { isAuthenticated } = props;
@@ -14,9 +17,20 @@ const NavBar = (props: any) => {
   return (
     <div className="header">
       <nav>
+        <Link to="/">
+          <HomeIcon style={{ color: "white" }} />
+        </Link>
+        {isAuthenticated && (
+          <Link
+            style={{ color: "white", textDecoration: "none" }}
+            to="/dashboard"
+          >
+            <DashboardIcon />
+          </Link>
+        )}
         {!isAuthenticated ? (
           <Link className="navLink" to="/login">
-            Login
+            <LoginIcon />
           </Link>
         ) : (
           <Link className="navLink" onClick={Logout} to="/">
