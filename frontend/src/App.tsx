@@ -1,8 +1,10 @@
 import React, { useState, ReactNode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { connect } from "react-redux";
 import "./App.scss";
 
 //Components
+import PrivateRoute from "./Utils/PrivateRoute";
 import NavBar from "./Components/Navbar";
 import CreateAccount from "./Forms/CreateAccount";
 import Login from "./Forms/Login";
@@ -18,48 +20,63 @@ const RouteWithNavBar: React.FC<{ children: ReactNode }> = ({ children }) => (
     <Footer />
   </div>
 );
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <RouteWithNavBar>
-        <Home />
-      </RouteWithNavBar>
-    ),
-  },
-  {
-    path: "/login",
-    element: (
-      <RouteWithNavBar>
-        <Login />
-      </RouteWithNavBar>
-    ),
-  },
-  {
-    path: "/create-account",
-    element: (
-      <RouteWithNavBar>
-        <CreateAccount />
-      </RouteWithNavBar>
-    ),
-  },
 
-  {
-    path: "/dashboard",
-    element: (
-      <RouteWithNavBar>
-        <HealthBoard />
-      </RouteWithNavBar>
-    ),
-  },
-]);
+const AppRouter: React.FC<{ isAuthenticated: boolean }> = ({
+  isAuthenticated,
+}) => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <RouteWithNavBar>
+          <Home />
+        </RouteWithNavBar>
+      ),
+    },
+    {
+      path: "/login",
+      element: (
+        <RouteWithNavBar>
+          <Login />
+        </RouteWithNavBar>
+      ),
+    },
+    {
+      path: "/create-account",
+      element: (
+        <RouteWithNavBar>
+          <CreateAccount />
+        </RouteWithNavBar>
+      ),
+    },
 
-function App() {
+    {
+      path: "/dashboard",
+      element: (
+        <PrivateRoute isAuthenticated={isAuthenticated}>
+          <RouteWithNavBar>
+            <HealthBoard />
+          </RouteWithNavBar>
+        </PrivateRoute>
+      ),
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+};
+
+function App(props: { isAuthenticated: boolean }) {
+  const { isAuthenticated } = props;
+  console.log(isAuthenticated);
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <AppRouter isAuthenticated={isAuthenticated} />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+  return { isAuthenticated: state.isAuthenticated };
+};
+
+export default connect(mapStateToProps, {})(App);

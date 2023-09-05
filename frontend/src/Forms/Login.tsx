@@ -52,7 +52,7 @@ const Login = (props: any) => {
       }
     }
   };
-  console.log("Login props", props);
+
   return (
     <FormLayout>
       <form

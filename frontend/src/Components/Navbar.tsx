@@ -10,7 +10,7 @@ const NavBar = (props: any) => {
     localStorage.clear();
     props.setAuthentication(!isAuthenticated);
   };
-  console.log(isAuthenticated);
+
   return (
     <div className="header">
       <nav>
