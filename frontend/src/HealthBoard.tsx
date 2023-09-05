@@ -46,7 +46,7 @@ const HealthBoard = () => {
         console.error(response);
       });
   }, []);
-  console.log(workouts);
+
   return (
     <div className="dashboard">
       <button onClick={toggleModal} className="add-workout-button">

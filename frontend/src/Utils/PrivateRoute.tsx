@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
 interface PrivateRouteProps {
   isAuthenticated: boolean;
@@ -20,4 +21,8 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   return <>{children}</>;
 };
 
-export default PrivateRoute;
+const mapStateToProps = (state: any) => {
+  return { isAuthenticated: state.isAuthenticated };
+};
+
+export default connect(mapStateToProps, {})(PrivateRoute);

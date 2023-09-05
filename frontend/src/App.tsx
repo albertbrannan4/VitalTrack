@@ -21,62 +21,50 @@ const RouteWithNavBar: React.FC<{ children: ReactNode }> = ({ children }) => (
   </div>
 );
 
-const AppRouter: React.FC<{ isAuthenticated: boolean }> = ({
-  isAuthenticated,
-}) => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <RouteWithNavBar>
+        <Home />
+      </RouteWithNavBar>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <RouteWithNavBar>
+        <Login />
+      </RouteWithNavBar>
+    ),
+  },
+  {
+    path: "/create-account",
+    element: (
+      <RouteWithNavBar>
+        <CreateAccount />
+      </RouteWithNavBar>
+    ),
+  },
+
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
         <RouteWithNavBar>
-          <Home />
+          <HealthBoard />
         </RouteWithNavBar>
-      ),
-    },
-    {
-      path: "/login",
-      element: (
-        <RouteWithNavBar>
-          <Login />
-        </RouteWithNavBar>
-      ),
-    },
-    {
-      path: "/create-account",
-      element: (
-        <RouteWithNavBar>
-          <CreateAccount />
-        </RouteWithNavBar>
-      ),
-    },
+      </PrivateRoute>
+    ),
+  },
+]);
 
-    {
-      path: "/dashboard",
-      element: (
-        <PrivateRoute isAuthenticated={isAuthenticated}>
-          <RouteWithNavBar>
-            <HealthBoard />
-          </RouteWithNavBar>
-        </PrivateRoute>
-      ),
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
-};
-
-function App(props: { isAuthenticated: boolean }) {
-  const { isAuthenticated } = props;
-
+function App() {
   return (
     <div className="App">
-      <AppRouter isAuthenticated={isAuthenticated} />
+      <RouterProvider router={router} />
     </div>
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.isAuthenticated };
-};
-
-export default connect(mapStateToProps, {})(App);
+export default App;
